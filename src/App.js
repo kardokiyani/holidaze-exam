@@ -14,7 +14,7 @@ import Contact from "./components/contact";
 
 import SignIn from "./components/signIn";
 
-import SignUp from "./signUp";
+import SignUp from "./components/signUp";
 
 export function Home() {
   return (
