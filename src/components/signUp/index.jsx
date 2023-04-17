@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Container, Form, Button, Alert } from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
 
 const API_REGISTER = "https://api.noroff.dev/api/v1/holidaze/auth/register";
 
@@ -15,15 +15,31 @@ export function SignUp() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Clear any previous error messages
+    setIsError(false);
+
+    // Check if name is empty
+    if (formData.name.trim() === "") {
+      setIsError("Please enter your name.");
+      return;
+    }
+
+    // Check if email is valid
+    const isNoroffEmail = formData.email.endsWith("@stud.noroff.no");
+    if (!isNoroffEmail) {
+      setIsError("Only @stud.noroff.no emails are allowed to register.");
+      return;
+    }
+
+    // Check if password is at least 8 characters long
+    if (formData.password.length < 8) {
+      setIsError("Password should be at least 8 characters long.");
+      return;
+    }
+
+    setIsLoading(true);
     try {
-      // Check if email is valid
-      const isNoroffEmail = formData.email.endsWith("@stud.noroff.no");
-      if (!isNoroffEmail) {
-        setIsError("Only @stud.noroff.no emails are allowed to register.");
-        return;
-      }
-      setIsError(false);
-      setIsLoading(true);
       const response = await fetch(API_REGISTER, {
         method: "POST",
         headers: {
@@ -37,9 +53,9 @@ export function SignUp() {
       // Redirect to a success page or do something else
     } catch (error) {
       setIsLoading(false);
-      setIsError(true);
+      setIsError("Error loading data");
     }
-  }; 
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -52,7 +68,6 @@ export function SignUp() {
   return (
     <Container className="register-container">
       <h1>Sign Up</h1>
-      {isError && <Alert variant="danger">Error loading data</Alert>}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicName">
           <Form.Label>Name</Form.Label>
@@ -63,7 +78,11 @@ export function SignUp() {
             name="name"
             value={formData.name}
             onChange={handleChange}
+            isInvalid={!!isError && formData.name.trim() === ""}
           />
+          <Form.Control.Feedback type="invalid" className="errorStyle">
+            {isError && formData.name.trim() === "" && isError}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="formBasicEmail">
@@ -75,7 +94,13 @@ export function SignUp() {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            isInvalid={!!isError && !formData.email.endsWith("@stud.noroff.no")}
           />
+          <Form.Control.Feedback type="invalid" className="errorStyle">
+            {isError && !formData.email.endsWith("@stud.noroff.no")
+              ? "Only @stud.noroff.no emails are allowed to register."
+              : ""}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
@@ -87,7 +112,13 @@ export function SignUp() {
             name="password"
             value={formData.password}
             onChange={handleChange}
+            isInvalid={!!isError && formData.password.length < 8}
           />
+          <Form.Control.Feedback type="invalid" className="errorStyle">
+            {isError && formData.password.length < 8
+              ? "Password should be at least 8 characters long."
+              : ""}
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Button className="submit-btn" variant="primary" type="submit">

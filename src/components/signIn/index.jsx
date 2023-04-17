@@ -48,7 +48,6 @@ export function SignIn() {
   return (
     <Container className="login-container">
       <h1>Login</h1>
-      {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -71,6 +70,12 @@ export function SignIn() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
+
+        {error && (
+          <Alert variant="danger" className="errorStyle">
+            {error}
+          </Alert>
+        )}
 
         <Button className="submit-btn" variant="primary" type="submit">
           Submit

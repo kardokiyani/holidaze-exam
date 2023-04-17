@@ -98,7 +98,8 @@ form {
 }
 
 .login-container,
-.register-container {
+.register-container,
+.contact-container {
   margin: 20px;
 }
 
@@ -141,4 +142,8 @@ form {
 p {
   margin-top: 20px;
   text-align: center;
+}
+
+.errorStyle {
+  color: red;
 }
