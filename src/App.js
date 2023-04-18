@@ -16,10 +16,12 @@ import SignIn from "./components/signIn";
 
 import SignUp from "./components/signUp";
 
+import GetVenueSpecific from "./components/specific";
+
 export function Home() {
   return (
     <main>
-      <HomePage/>
+      <HomePage />
     </main>
   );
 }
@@ -37,6 +39,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/signUp" element={<SignUp />} />
+          <Route path="/venue/:id" element={<GetVenueSpecific />} />
           <Route path="*" element={<RouteNotFound />} />
         </Route>
       </Routes>
