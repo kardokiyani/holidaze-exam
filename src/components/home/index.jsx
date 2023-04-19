@@ -37,12 +37,14 @@ function GetVenues() {
         />
       </div>
       {filteredVenues.map((venue) => (
-        <div key={venue.id}>
+        <div key={venue.id} className="venue">
           <h2>{venue.name}</h2>
           <img src={venue.media} alt={venue.name} className="venueImage" />
           <p>{venue.description}</p>
           <p>{venue.price}</p>
-          <Link to={`/venue/${venue.id}`}>View details</Link>
+          <Link to={`/venue/${venue.id}`} className="viewDetailsLink">
+            View details
+          </Link>
         </div>
       ))}
     </div>

@@ -154,14 +154,56 @@ p {
 }
 
 .searchContainer {
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .searchInputStyle {
-  width: 300px;
   padding: 10px;
-  border-radius: 10px;
-  border-color: black;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.venue {
+  margin-bottom: 30px;
+  padding: 20px;
+  margin: 20px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.venue h2 {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.venueImage {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.venue p {
+  font-size: 18px;
+  margin: 0;
+}
+
+.viewDetailsLink {
+  display: inline-block;
+  background-color: #6d9be0;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.viewDetailsLink:hover {
+  background-color: #5687c7;
 }
