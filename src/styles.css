@@ -152,3 +152,16 @@ p {
   width: 100%;
   object-fit: cover;
 }
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.searchInputStyle {
+  width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  border-color: black;
+}
