@@ -18,6 +18,8 @@ import SignUp from "./components/signUp";
 
 import GetVenueSpecific from "./components/specific";
 
+import Profile from "./components/profile";
+
 export function Home() {
   return (
     <main>
@@ -40,6 +42,7 @@ function App() {
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/venue/:id" element={<GetVenueSpecific />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<RouteNotFound />} />
         </Route>
       </Routes>

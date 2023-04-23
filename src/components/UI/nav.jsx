@@ -1,10 +1,23 @@
 import { Link } from "react-router-dom";
 
+import { useState } from "react";
+
 export function Nav() {
+  const [showMenu, setShowMenu] = useState(false);
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
 
   return (
     <nav className="navStyle">
-      <ul className="ulStyle">
+      <button className="hamburger" onClick={toggleMenu}>
+        &#9776;
+      </button>
+      <ul
+        className={"ulStyle" + (showMenu ? " show" : "")}
+        onClick={toggleMenu}
+      >
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -13,6 +26,9 @@ export function Nav() {
         </li>
         <li>
           <Link to="/signIn">Sign In</Link>
+        </li>
+        <li>
+          <Link to="/profile">Profile</Link>
         </li>
       </ul>
     </nav>

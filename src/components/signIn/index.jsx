@@ -10,11 +10,11 @@ export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [token, setToken] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate form fields
     if (!email || !password) {
       setError("Please fill out both email and password.");
       return;
@@ -34,7 +34,10 @@ export function SignIn() {
         return;
       }
 
-      // Handle successful login here
+      const { token } = await response.json();
+
+      localStorage.setItem("token", token);
+      setToken(token);
       setEmail("");
       setPassword("");
       setError(null);
