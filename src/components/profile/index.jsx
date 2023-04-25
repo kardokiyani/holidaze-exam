@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
-const API_PROFILE_URL =
-  "https://api.noroff.dev/api/v1/holidaze/profiles/aAyETtBgER7WQCEy/media";
+import HandleTheLogout from "../logOut";
 
-const TOKEN = "your-bearer-token";
+const API_PROFILE_URL = "https://api.noroff.dev/api/v1/holidaze/profiles/";
 
 function Profile() {
   const [profile, setProfile] = useState(null);
@@ -13,28 +12,27 @@ function Profile() {
   const [error, setError] = useState(null);
   const [token, setToken] = useState(null);
 
+  // Get the token from local storage when the component mounts
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+  }, []);
+
   async function fetchProfile() {
     try {
       const response = await fetch(API_PROFILE_URL, {
-        method: "PUT",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${TOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          name: "updated name",
-          email: "updated email",
-        }),
       });
+
       if (!response.ok) {
-        throw new Error("Failed to update profile");
+        throw new Error("Failed to fetch profile");
       }
+
       const data = await response.json();
       setProfile(data);
       setLoading(false);
-
-      const newToken = response.headers.get("Authorization");
-      setToken(newToken);
     } catch (error) {
       setError(error);
       setLoading(false);
@@ -57,9 +55,12 @@ function Profile() {
     <div>
       {profile && (
         <div>
-          <h1>{profile.name}</h1>
-          <p>{profile.email}</p>
+          <h1>Welcome, {user.name}!</h1>
+          <p>Email: {user.email}</p>
+          <p>Credits: {user.credits}</p>
+          <p>Avatar: {user.avatar}</p>
           <Link to={`/profiles/${profile.id}`}>Edit Profile</Link>
+          <HandleTheLogout />
         </div>
       )}
     </div>

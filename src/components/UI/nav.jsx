@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 
 import { useState } from "react";
 
+import HandleTheLogout from "../logOut";
+
 export function Nav() {
   const [showMenu, setShowMenu] = useState(false);
 
@@ -29,6 +31,11 @@ export function Nav() {
         </li>
         <li>
           <Link to="/profile">Profile</Link>
+        </li>
+        <li>
+          <Link to="/" onClick={HandleTheLogout}>
+            Logout
+          </Link>
         </li>
       </ul>
     </nav>
