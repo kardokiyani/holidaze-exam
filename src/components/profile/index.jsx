@@ -55,10 +55,10 @@ function Profile() {
     <div>
       {profile && (
         <div>
-          <h1>Welcome, {user.name}!</h1>
-          <p>Email: {user.email}</p>
-          <p>Credits: {user.credits}</p>
-          <p>Avatar: {user.avatar}</p>
+          <h1>Welcome, {profile.name}!</h1>
+          <p>Email: {profile.email}</p>
+          <p>Credits: {profile.credits}</p>
+          <p>Avatar: {profile.avatar}</p>
           <Link to={`/profiles/${profile.id}`}>Edit Profile</Link>
           <HandleTheLogout />
         </div>
