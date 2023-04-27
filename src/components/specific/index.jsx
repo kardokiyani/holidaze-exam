@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 
 import { useParams, useNavigate } from "react-router-dom";
 
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
+import GetBooking from "../bookings";
+
 const API_SPECIFIC_URL = "https://api.noroff.dev/api/v1/holidaze/venues";
 
 function GetVenueSpecific() {
@@ -11,6 +17,8 @@ function GetVenueSpecific() {
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
   const url = API_SPECIFIC_URL;
+  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkOutDate, setCheckOutDate] = useState(null);
 
   useEffect(() => {
     async function getData() {
@@ -21,9 +29,11 @@ function GetVenueSpecific() {
         const json = await response.json();
         setVenue(json);
         setIsLoading(false);
+        console.log("Venue data loaded:", json); // add console log here
       } catch (error) {
         setIsLoading(false);
         setIsError(true);
+        console.error("Error loading venue data:", error); // add console error here
       }
     }
 
@@ -44,6 +54,28 @@ function GetVenueSpecific() {
       <img src={venue.media} alt={venue.name} className="venuesImage" />
       <p>{venue.description}</p>
       <p>{venue.price}</p>
+      <div className="datePickerContainer">
+        <label>Check-in</label>
+        <DatePicker
+          selected={checkInDate}
+          onChange={(date) => setCheckInDate(date)}
+          selectsStart
+          startDate={checkInDate}
+          endDate={checkOutDate}
+          dateFormat="dd/MM/yyyy"
+        />
+        <label>Check-out</label>
+        <DatePicker
+          selected={checkOutDate}
+          onChange={(date) => setCheckOutDate(date)}
+          selectsEnd
+          startDate={checkInDate}
+          endDate={checkOutDate}
+          minDate={checkInDate}
+          dateFormat="dd/MM/yyyy"
+        />
+      </div>
+      <GetBooking />
     </div>
   );
 }
