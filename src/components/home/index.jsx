@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
-const API_BASE_URL = "https://api.noroff.dev/api/v1/holidaze/venues";
+import CreateVenue from "../create";
+
+export const API_BASE_URL = "https://api.noroff.dev/api/v1/holidaze/venues";
 
 function GetVenues() {
   const [venues, setVenues] = useState([]);
@@ -27,6 +29,7 @@ function GetVenues() {
 
   return (
     <div>
+      <CreateVenue/>
       <div className="searchContainer">
         <input
           className="searchInputStyle"
