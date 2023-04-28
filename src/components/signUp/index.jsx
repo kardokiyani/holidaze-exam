@@ -11,33 +11,35 @@ export function SignUp() {
     name: "",
     email: "",
     password: "",
+    avatar: "",
+    isVenueManager: false,
   });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     // Clear any previous error messages
     setIsError(false);
-
+  
     // Check if name is empty
     if (formData.name.trim() === "") {
       setIsError("Please enter your name.");
       return;
     }
-
+  
     // Check if email is valid
     const isNoroffEmail = formData.email.endsWith("@stud.noroff.no");
     if (!isNoroffEmail) {
       setIsError("Only @stud.noroff.no emails are allowed to register.");
       return;
     }
-
+  
     // Check if password is at least 8 characters long
     if (formData.password.length < 8) {
       setIsError("Password should be at least 8 characters long.");
       return;
     }
-
+  
     setIsLoading(true);
     try {
       const response = await fetch(API_REGISTER, {
@@ -45,23 +47,29 @@ export function SignUp() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          isVenueManager: formData.isVenueManager ? true : false,
+        }),
       });
       const json = await response.json();
       console.log(json); // Log the response data
       setIsLoading(false);
+      console.log("isVenueManager:", formData.isVenueManager ? true : false); // Log isVenueManager value
       // Redirect to a success page or do something else
     } catch (error) {
       setIsLoading(false);
       setIsError("Error loading data");
     }
   };
+  
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, type, checked } = event.target;
+    const newValue = type === "checkbox" ? checked : value;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: newValue,
     }));
   };
 
@@ -119,6 +127,29 @@ export function SignUp() {
               ? "Password should be at least 8 characters long."
               : ""}
           </Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group controlId="formBasicAvatar">
+          <Form.Label>Avatar</Form.Label>
+          <Form.Control
+            className="form-control"
+            type="text"
+            placeholder="Enter avatar URL"
+            name="avatar"
+            value={formData.avatar}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formBasicIsVenueManager">
+          <Form.Check
+            className="form-control"
+            type="checkbox"
+            label="Are you a venue manager?"
+            name="isVenueManager"
+            checked={formData.isVenueManager}
+            onChange={handleChange}
+          />
         </Form.Group>
 
         <Button className="submit-btn" variant="primary" type="submit">
