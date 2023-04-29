@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import HandleTheLogout from "../logOut";
 
-import create from "zustand";
+import { create } from "zustand";
 
 const API_PROFILE_URL = "https://api.noroff.dev/api/v1/holidaze/profiles/";
 
@@ -18,32 +18,48 @@ function Profile() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { token, setToken } = useTokenStore();
+  const [name, setName] = useState(localStorage.getItem("name") || "");
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const storedToken = token;
-        const name = localStorage.getItem("name");
-        console.log(API_PROFILE_URL + name);
-        const response = await fetch(API_PROFILE_URL + name, {
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          },
-        });
-        console.log("response:", response);
-        console.log("storedToken:", storedToken);
-        const data = await response.json();
-        setUser(data);
-        setLoading(false);
-        console.log("Profile data loaded:", data);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-        setError(error);
-        setLoading(false);
+    const storedToken = localStorage.getItem("token");
+    const storedName = localStorage.getItem("name");
+
+    if (storedToken && storedName) {
+      setToken(JSON.parse(storedToken));
+      setName(storedName);
+    }
+
+    if (storedToken && storedName) {
+      fetchUserProfile(storedToken, storedName);
+    }
+  }, []);
+
+  const fetchUserProfile = async (token, name) => {
+    if (!token || !name) {
+      return;
+    }
+
+    try {
+      const response = await fetch(API_PROFILE_URL + name, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    };
-    fetchUser();
-  }, [token]);
+
+      const data = await response.json();
+      setUser(data);
+      setLoading(false);
+      console.log("Profile data loaded:", data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      setError(error);
+      setLoading(false);
+    }
+  };
 
   const handleTokenChange = (newToken) => {
     setToken(newToken);
