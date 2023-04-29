@@ -4,22 +4,28 @@ import { Link } from "react-router-dom";
 
 import HandleTheLogout from "../logOut";
 
+import create from "zustand";
+
 const API_PROFILE_URL = "https://api.noroff.dev/api/v1/holidaze/profiles/";
+
+const useTokenStore = create((set) => ({
+  token: localStorage.getItem("token"),
+  setToken: (token) => set({ token }),
+}));
 
 function Profile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [token, setToken] = useState(null);
+  const { token, setToken } = useTokenStore();
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const storedToken = localStorage.getItem("token");
-        setToken(storedToken);
+        const storedToken = token;
         const name = localStorage.getItem("name");
         console.log(API_PROFILE_URL + name);
-        const response = await fetch(API_PROFILE_URL, {
+        const response = await fetch(API_PROFILE_URL + name, {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
@@ -37,7 +43,12 @@ function Profile() {
       }
     };
     fetchUser();
-  }, []);
+  }, [token]);
+
+  const handleTokenChange = (newToken) => {
+    setToken(newToken);
+    localStorage.setItem("token", newToken);
+  };
 
   if (!user) {
     return <div>Loading the user data...</div>;
@@ -67,7 +78,7 @@ function Profile() {
           <h1>Welcome, {user.name}!</h1>
           <p>Email: {user.email}</p>
           <Link to={`/profiles/${user.id}`}>Edit Profile</Link>
-          <HandleTheLogout />
+          <HandleTheLogout onTokenChange={handleTokenChange} />
         </div>
       )}
     </div>
