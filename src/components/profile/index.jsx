@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
+
 import { Link } from "react-router-dom";
+
 import HandleTheLogout from "../logOut";
+
 import { create } from "zustand";
+
+import UpdateAvatar from "../profileUpdateAvatar";
 
 const API_PROFILE_URL = "https://api.noroff.dev/api/v1/holidaze/profiles/";
 
-const useTokenStore = create((set) => ({
+export const useTokenStore = create((set) => ({
   token: localStorage.getItem("token"),
   setToken: (token) => set({ token }),
 }));
@@ -22,7 +27,7 @@ function Profile() {
     const storedName = localStorage.getItem("name");
 
     if (storedToken && storedName) {
-      setToken(JSON.parse(storedToken));
+      setToken(storedToken);
       setName(storedName);
 
       setLoading(true); // Set loading to true before fetching
@@ -55,7 +60,7 @@ function Profile() {
 
       fetchUserProfile(storedToken, storedName);
     }
-  }, [setToken, setName]); // Add setToken and setName as dependencies
+  }, [setToken, setName, name]);
 
   const handleTokenChange = (newToken) => {
     setToken(newToken);
@@ -70,7 +75,7 @@ function Profile() {
     <div>
       {user && (
         <div>
-          {user.avatar ? (
+          {user.avatar || (user.avatar === null && user.avatar) ? (
             <img
               className="rounded-image"
               src={user.avatar}
@@ -82,6 +87,7 @@ function Profile() {
           <h1>Welcome, {user.name}!</h1>
           <p>Email: {user.email}</p>
           <Link to={`/profiles/${user.id}`}>Edit Profile</Link>
+          <UpdateAvatar />
           <HandleTheLogout onTokenChange={handleTokenChange} />
         </div>
       )}

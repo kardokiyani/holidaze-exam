@@ -34,11 +34,12 @@ export function SignIn() {
         return;
       }
 
-      const { token } = await response.json();
-      console.log(token);
+      const { accessToken, name } = await response.json();
+      console.log(accessToken, name);
 
-      localStorage.setItem("token", token);
-      setToken(token);
+      localStorage.setItem("token", accessToken);
+      localStorage.setItem("name", name);
+      setToken(accessToken);
       setEmail("");
       setPassword("");
       setError(null);
