@@ -72,21 +72,20 @@ function Profile() {
   }
 
   return (
-    <div>
+    <div className="profileContentStyle">
       {user && (
         <div>
           {user.avatar || (user.avatar === null && user.avatar) ? (
             <img
-              className="rounded-image"
+              className="profileAvatarImage"
               src={user.avatar}
               alt={`Avatar for ${user.name}`}
             />
           ) : (
-            <img className="rounded-image" alt="Default avatar" />
+            <img className="profileAvatarImage" alt="Default avatar" />
           )}
           <h1>Welcome, {user.name}!</h1>
           <p>Email: {user.email}</p>
-          <Link to={`/profiles/${user.id}`}>Edit Profile</Link>
           <UpdateAvatar name={user.name} />
           <HandleTheLogout onTokenChange={handleTokenChange} />
         </div>

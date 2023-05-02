@@ -327,6 +327,15 @@ p {
   border-color: rgb(11, 171, 157);
 }
 
+.profileContentStyle {
+  display: flex;
+  justify-content: center;
+}
+
+.profileAvatarImage {
+  max-width: 300px;
+}
+
 @media screen and (max-width: 820px) {
   .ulStyle {
     display: none;
