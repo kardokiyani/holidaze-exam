@@ -36,19 +36,24 @@ function GetVenues() {
           onChange={(e) => setSearchInput(e.target.value)}
         />
       </div>
-      {filteredVenues.map((venue) => (
-        <div key={venue.id} className="venue">
-          <h2>{venue.name}</h2>
-          <img src={venue.media} alt={venue.name} className="venueImage" />
-          <p>{venue.description}</p>
-          <p>{venue.price}</p>
-          <Link to={`/venue/${venue.id}`} className="viewDetailsLink">
-            View details
+      <div className="venuesContainer">
+        {filteredVenues.map((venue) => (
+          <Link
+            key={venue.id}
+            to={`/venue/${venue.id}`}
+            className="venueLink"
+          >
+            <div className="venue">
+              <h2>{venue.name}</h2>
+              <img src={venue.media} alt={venue.name} className="venueImage" />
+              <p>{venue.description}</p>
+              <p>{venue.price}</p>
+            </div>
           </Link>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-  );
+  );  
 }
 
 export default GetVenues;
