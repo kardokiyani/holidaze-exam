@@ -87,7 +87,7 @@ function Profile() {
           <h1>Welcome, {user.name}!</h1>
           <p>Email: {user.email}</p>
           <Link to={`/profiles/${user.id}`}>Edit Profile</Link>
-          <UpdateAvatar />
+          <UpdateAvatar name={user.name} />
           <HandleTheLogout onTokenChange={handleTokenChange} />
         </div>
       )}
