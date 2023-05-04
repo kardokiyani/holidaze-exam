@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import { Link } from "react-router-dom";
-
 import HandleTheLogout from "../logOut";
 
 import { create } from "zustand";
@@ -89,7 +87,7 @@ function Profile() {
           <h1>Welcome, {user.name}!</h1>
           <p>Email: {user.email}</p>
           <UpdateAvatar name={user.name} />
-          <CreateVenue className= "createVenueForm"/>
+          <CreateVenue className="createVenueForm" />
           <HandleTheLogout onTokenChange={handleTokenChange} />
         </div>
       )}

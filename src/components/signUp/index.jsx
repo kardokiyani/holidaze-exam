@@ -17,29 +17,29 @@ export function SignUp() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     // Clear any previous error messages
     setIsError(false);
-  
+
     // Check if name is empty
     if (formData.name.trim() === "") {
       setIsError("Please enter your name.");
       return;
     }
-  
+
     // Check if email is valid
     const isNoroffEmail = formData.email.endsWith("@stud.noroff.no");
     if (!isNoroffEmail) {
       setIsError("Only @stud.noroff.no emails are allowed to register.");
       return;
     }
-  
+
     // Check if password is at least 8 characters long
     if (formData.password.length < 8) {
       setIsError("Password should be at least 8 characters long.");
       return;
     }
-  
+
     setIsLoading(true);
     try {
       const response = await fetch(API_REGISTER, {
@@ -62,7 +62,6 @@ export function SignUp() {
       setIsError("Error loading data");
     }
   };
-  
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;

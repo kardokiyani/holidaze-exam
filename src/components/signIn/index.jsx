@@ -43,6 +43,7 @@ export function SignIn() {
       setEmail("");
       setPassword("");
       setError(null);
+      window.location.href = "/profile";
       console.log("Successful login!");
     } catch (error) {
       setError("An error occurred. Please try again later.");
