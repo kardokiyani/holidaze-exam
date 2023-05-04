@@ -12,7 +12,7 @@ export function SignUp() {
     email: "",
     password: "",
     avatar: "",
-    isVenueManager: false,
+    venueManager: "",
   });
 
   const handleSubmit = async (event) => {
@@ -49,14 +49,12 @@ export function SignUp() {
         },
         body: JSON.stringify({
           ...formData,
-          isVenueManager: formData.isVenueManager ? true : false,
+          venueManager: formData.venueManager ? true : false,
         }),
       });
       const json = await response.json();
       console.log(json); // Log the response data
       setIsLoading(false);
-      console.log("isVenueManager:", formData.isVenueManager ? true : false); // Log isVenueManager value
-      // Redirect to a success page or do something else
     } catch (error) {
       setIsLoading(false);
       setIsError("Error loading data");
@@ -68,7 +66,9 @@ export function SignUp() {
     const newValue = type === "checkbox" ? checked : value;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: newValue,
+      [name]: type === "checkbox" ? checked : value,
+      venueManager:
+        name === "venueManager" ? checked : prevState.venueManager,
     }));
   };
 
@@ -140,13 +140,13 @@ export function SignUp() {
           />
         </Form.Group>
 
-        <Form.Group controlId="formBasicIsVenueManager">
+        <Form.Group controlId="formBasicVenueManager">
           <Form.Check
             className="form-control"
             type="checkbox"
             label="Are you a venue manager?"
-            name="isVenueManager"
-            checked={formData.isVenueManager}
+            name="venueManager"
+            checked={formData.venueManager}
             onChange={handleChange}
           />
         </Form.Group>
