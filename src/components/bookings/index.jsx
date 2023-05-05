@@ -1,50 +1,128 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-import { useParams, useNavigate } from "react-router-dom";
+import { API_BASE, API_BOOKINGS } from "../ApiEndpoints";
 
-const API_BOOKINGS_URL = "https://api.noroff.dev/api/v1/holidaze/bookings";
-
-function GetBooking() {
-  const { id } = useParams();
-  const [venue, setVenue] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+export function GetBooking({ venueId }) {
+  const [formData, setFormData] = useState({
+    dateFrom: "",
+    dateTo: "",
+    guests: 0,
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isError, setIsError] = useState(false);
-  const navigate = useNavigate();
+  const [successMessage, setSuccessMessage] = useState("");
 
-  useEffect(() => {
-    async function getData() {
-      try {
-        setIsError(false);
-        setIsLoading(true);
-        const token = "your-authentication-token"; // Replace with your actual token
-        const response = await fetch(`${API_BOOKINGS_URL}/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: name === "guests" ? parseInt(value, 10) : value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setIsError(false);
+    setSuccessMessage("");
+
+    const bookingData = {
+      ...formData,
+      venueId: venueId,
+    };
+
+    console.log("Booking data:", bookingData);
+
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await fetch(API_BASE + API_BOOKINGS, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(bookingData),
+        Authorization: `Bearer ${token}`,
+      });
+
+      if (response.ok) {
+        setSuccessMessage("Booking successful!");
+        setFormData({
+          dateFrom: "",
+          dateTo: "",
+          guests: 1,
         });
-        const json = await response.json();
-        setVenue(json);
-        setIsLoading(false);
-        console.log("Venue data loaded:", json);
-      } catch (error) {
-        setIsLoading(false);
+      } else {
+        const errorData = await response.json();
+        console.error("Error data:", errorData);
         setIsError(true);
-        console.error("Error loading venue data:", error);
       }
+    } catch (error) {
+      console.error("Error:", error);
+      setIsError(true);
     }
 
-    getData();
-  }, [id]);
+    setIsSubmitting(false);
+  };
 
-  if (isLoading) {
-    return <div>Loading venue details...</div>;
-  }
-
-  if (isError) {
-    return <div>Error loading data</div>;
-  }
-
-  return <div></div>;
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="form-group mt-3">
+        <label htmlFor="dateFrom">Check In:</label>
+        <input
+          type="date"
+          className="form-control"
+          id="dateFrom"
+          name="dateFrom"
+          value={formData.dateFrom}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div className="form-group mt-2">
+        <label htmlFor="dateTo">Check Out:</label>
+        <input
+          type="date"
+          className="form-control"
+          id="dateTo"
+          name="dateTo"
+          value={formData.dateTo}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div className="form-group mt-2">
+        <label htmlFor="guests">Guests:</label>
+        <input
+          type="number"
+          className="form-control"
+          id="guests"
+          name="guests"
+          value={Number.isInteger(formData.guests) ? formData.guests : ""}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        className="btn btn-primary mt-4"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Submitting..." : "Book Now"}
+      </button>
+      {isError && (
+        <div className="alert alert-danger mt-3" role="alert">
+          There was an error submitting your booking. Please try again later.
+        </div>
+      )}
+      {successMessage && (
+        <div className="alert alert-success mt-3" role="alert">
+          {successMessage}
+        </div>
+      )}
+    </form>
+  );
 }
 
 export default GetBooking;
