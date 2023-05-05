@@ -29,11 +29,11 @@ function GetVenueSpecific() {
         const json = await response.json();
         setVenue(json);
         setIsLoading(false);
-        console.log("Venue data loaded:", json); // add console log here
+        console.log("Venue data loaded:", json);
       } catch (error) {
         setIsLoading(false);
         setIsError(true);
-        console.error("Error loading venue data:", error); // add console error here
+        console.error("Error loading venue data:", error);
       }
     }
 
