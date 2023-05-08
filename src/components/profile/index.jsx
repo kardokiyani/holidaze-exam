@@ -8,6 +8,8 @@ import UpdateAvatar from "../profileUpdateAvatar";
 
 import CreateVenue from "../create";
 
+import UpcomingBookings from "../upcomingBookings";
+
 const API_PROFILE_URL = "https://api.noroff.dev/api/v1/holidaze/profiles/";
 
 export const useTokenStore = create((set) => ({
@@ -88,6 +90,7 @@ function Profile() {
           <p>Email: {user.email}</p>
           <UpdateAvatar name={user.name} />
           <CreateVenue className="createVenueForm" />
+          <UpcomingBookings/>
           <HandleTheLogout onTokenChange={handleTokenChange} />
         </div>
       )}
