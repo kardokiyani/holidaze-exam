@@ -98,7 +98,7 @@ function CreateVenue() {
             className="form-control mt-1"
             id="name"
             name="name"
-            value={venue.name}
+            value={venue.name || ""}
             onChange={handleChange}
           />
         </div>
@@ -109,7 +109,7 @@ function CreateVenue() {
             className="form-control"
             id="description"
             name="description"
-            value={venue.description}
+            value={venue.description || ""}
             onChange={handleChange}
             rows="5"
           />
@@ -132,7 +132,7 @@ function CreateVenue() {
             className="form-control mt-1"
             id="maxGuests"
             name="maxGuests"
-            value={venue.maxGuests}
+            value={venue.maxGuests || ""}
             onChange={handleChange}
           />
         </div>
@@ -143,7 +143,7 @@ function CreateVenue() {
             className="form-check-input  mx-2"
             id="wifi"
             name="wifi"
-            checked={venue.meta.wifi}
+            checked={venue.meta.wifi || ""}
             onChange={handleChange}
           />
         </div>
@@ -154,7 +154,7 @@ function CreateVenue() {
             className="form-check-input mx-2"
             id="parking"
             name="parking"
-            checked={venue.meta.parking}
+            checked={venue.meta.parking || ""}
             onChange={handleChange}
           />
         </div>
@@ -165,7 +165,7 @@ function CreateVenue() {
             className="form-check-input  mx-2"
             id="breakfast"
             name="breakfast"
-            checked={venue.meta.breakfast}
+            checked={venue.meta.breakfast || ""}
             onChange={handleChange}
           />
         </div>
@@ -176,7 +176,7 @@ function CreateVenue() {
             className="form-check-input  mx-2"
             id="pets"
             name="pets"
-            checked={venue.meta.pets}
+            checked={venue.meta.pets || ""}
             onChange={handleChange}
           />
         </div>
@@ -187,7 +187,7 @@ function CreateVenue() {
             className="form-control  mt-1"
             id="location.address"
             name="location.address"
-            value={venue.location.address}
+            value={venue.location.address || ""}
             onChange={handleChange}
           />
         </div>
@@ -198,7 +198,7 @@ function CreateVenue() {
             className="form-control  mt-1"
             id="location.city"
             name="location.city"
-            value={venue.location.city}
+            value={venue.location.city || ""}
             onChange={handleChange}
           />
         </div>
@@ -209,7 +209,7 @@ function CreateVenue() {
             className="form-control mt-1"
             id="location.zip"
             name="location.zip"
-            value={venue.location.zip}
+            value={venue.location.zip || ""}
             onChange={handleChange}
           />
         </div>
@@ -220,7 +220,7 @@ function CreateVenue() {
             className="form-control mt-1"
             id="location.country"
             name="location.country"
-            value={venue.location.country}
+            value={venue.location.country || ""}
             onChange={handleChange}
           />
         </div>
@@ -232,7 +232,7 @@ function CreateVenue() {
             className="form-control mt-1"
             id="mediaUrl"
             name="mediaUrl"
-            value={mediaUrl}
+            value={mediaUrl || ""}
             onChange={handleMediaChange}
           />
         </div>
