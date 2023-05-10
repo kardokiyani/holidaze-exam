@@ -11,7 +11,7 @@ export function UpcomingBookings({ customerId }) {
       const token = localStorage.getItem("token");
       const name = localStorage.getItem("name");
       const response = await fetch(
-        `${API_UPCOMING_BOOKINGS_URL}${name}/bookings`,
+        `${API_UPCOMING_BOOKINGS_URL}${name}/bookings?_venue=true`,
         {
           method: "GET",
           headers: {
@@ -21,6 +21,7 @@ export function UpcomingBookings({ customerId }) {
         }
       );
       const data = await response.json();
+      console.log("bookings", data);
       setBookings(data);
     } catch (error) {
       console.error("Error fetching upcoming bookings:", error);
@@ -34,15 +35,24 @@ export function UpcomingBookings({ customerId }) {
   return (
     <div>
       <h2>Upcoming Bookings</h2>
-      <ul>
-        {bookings.map((booking) => (
-          <li key={booking.id}>
-            <p>Booking ID: {booking.id}</p>
-            <p>Check-in: {booking.dateFrom}</p>
-            <p>Check-out: {booking.dateTo}</p>
-          </li>
-        ))}
-      </ul>
+      <div className="venuesContainer">
+          {bookings.map((booking) => (
+            <li key={booking.id}>
+              <div className="venue">
+                <h3>{booking.venue.name} </h3>
+                <img
+                  src={booking.venue.media}
+                  alt="booking-image"
+                  className="venueImage"
+                ></img>
+                <p>{booking.venue.description} </p>
+                <p>Price: {booking.venue.price}$ </p>
+                <p>Rating: {booking.venue.rating} </p>
+                <p>Max Guests: {booking.venue.maxGuests} </p>
+              </div>
+            </li>
+          ))}
+      </div>
     </div>
   );
 }
