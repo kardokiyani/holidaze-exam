@@ -67,61 +67,62 @@ export function GetBooking({ venueId }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group mt-3">
-        <label htmlFor="dateFrom">Check In:</label>
-        <input
-          type="date"
-          className="form-control"
-          id="dateFrom"
-          name="dateFrom"
-          value={formData.dateFrom}
-          onChange={handleInputChange}
-          required
-        />
-      </div>
-      <div className="form-group mt-2">
-        <label htmlFor="dateTo">Check Out:</label>
-        <input
-          type="date"
-          className="form-control"
-          id="dateTo"
-          name="dateTo"
-          value={formData.dateTo}
-          onChange={handleInputChange}
-          required
-        />
-      </div>
-      <div className="form-group mt-2">
-        <label htmlFor="guests">Guests:</label>
-        <input
-          type="number"
-          className="form-control"
-          id="guests"
-          name="guests"
-          value={Number.isInteger(formData.guests) ? formData.guests : ""}
-          onChange={handleInputChange}
-          required
-        />
-      </div>
-      <button
-        type="submit"
-        className="btn btn-primary mt-4"
-        disabled={isSubmitting}
-      >
-        {isSubmitting ? "Submitting..." : "Book Now"}
-      </button>
-      {isError && (
-        <div className="alert alert-danger mt-3" role="alert">
-          There was an error submitting your booking. Please try again later.
-        </div>
-      )}
-      {successMessage && (
-        <div className="alert alert-success mt-3" role="alert">
-          {successMessage}
-        </div>
-      )}
-    </form>
+    <form onSubmit={handleSubmit} style={{ maxWidth: "1200px", margin: "auto" }}>
+  <div className="form-group mt-3">
+    <label htmlFor="dateFrom">Check In:</label>
+    <input
+      type="date"
+      className="form-control form-control-sm"
+      id="dateFrom"
+      name="dateFrom"
+      value={formData.dateFrom}
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group mt-2">
+    <label htmlFor="dateTo">Check Out:</label>
+    <input
+      type="date"
+      className="form-control form-control-sm"
+      id="dateTo"
+      name="dateTo"
+      value={formData.dateTo}
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group mt-2">
+    <label htmlFor="guests">Guests:</label>
+    <input
+      type="number"
+      className="form-control form-control-sm"
+      id="guests"
+      name="guests"
+      value={Number.isInteger(formData.guests) ? formData.guests : ""}
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <button
+    type="submit"
+    className="btn btn-primary mt-4"
+    disabled={isSubmitting}
+  >
+    {isSubmitting ? "Submitting..." : "Book Now"}
+  </button>
+  {isError && (
+    <div className="alert alert-danger mt-3" role="alert">
+      There was an error submitting your booking. Please try again later.
+    </div>
+  )}
+  {successMessage && (
+    <div className="alert alert-success mt-3" role="alert">
+      {successMessage}
+    </div>
+  )}
+</form>
+
   );
 }
 
