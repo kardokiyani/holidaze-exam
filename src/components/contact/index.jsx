@@ -47,6 +47,7 @@ export function Contact() {
 
   return (
     <Container className="contact-container">
+      <h1>Contact Us</h1>
       <form className="formStyle" onSubmit={handleSubmit(onSubmit)}>
         <label className="labelStyle" htmlFor="full-name">
           Full Name

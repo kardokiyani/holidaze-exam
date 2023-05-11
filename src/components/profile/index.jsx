@@ -75,6 +75,7 @@ function Profile() {
 
   return (
     <div className="profileContentStyle">
+      <h1>Profile</h1>
       {user && (
         <div>
           {user.avatar || (user.avatar === null && user.avatar) ? (
@@ -86,7 +87,7 @@ function Profile() {
           ) : (
             <img className="profileAvatarImage" alt="Default avatar" />
           )}
-          <h1>Welcome, {user.name}!</h1>
+          <h2>Welcome, {user.name}!</h2>
           <p>Email: {user.email}</p>
           <UpdateAvatar name={user.name} />
           <CreateVenue className="createVenueForm" />
