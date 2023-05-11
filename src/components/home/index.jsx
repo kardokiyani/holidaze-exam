@@ -47,7 +47,9 @@ function GetVenues() {
               <h2>{venue.name}</h2>
               <img src={venue.media} alt={venue.name} className="venueImage" />
               <p>{venue.description}</p>
-              <p>{venue.price}</p>
+              <p>Price: {venue.price}$</p>
+              <p>Rating: {venue.rating}</p>
+              <p>Max Guests: {venue.maxGuests}</p>
             </div>
           </Link>
         ))}
