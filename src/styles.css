@@ -148,8 +148,14 @@ p {
   color: red;
 }
 
-.venuesImage {
-  width: 100%;
+.specificContainer {
+  text-align: center;
+}
+
+.specificVenueImage {
+  max-width: 80%;
+  margin: 0 auto;
+  display: block;
   object-fit: cover;
 }
 

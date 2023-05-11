@@ -45,11 +45,13 @@ function GetVenueSpecific() {
   }
 
   return (
-    <div>
+    <div className="specificContainer">
       <h2>{venue.name}</h2>
-      <img src={venue.media} alt={venue.name} className="venuesImage" />
+      <img src={venue.media} alt={venue.name} className="specificVenueImage" />
       <p>{venue.description}</p>
-      <p>{venue.price}</p>
+      <p>Price: {venue.price}$</p>
+      <p>Rating: {venue.rating}</p>
+      <p>Max Guests: {venue.maxGuests}</p>
       <GetBooking venueId={venue.id} />
     </div>
   );
