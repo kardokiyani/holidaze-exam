@@ -6,6 +6,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import GetBooking from "../bookings";
 
+import DeleteVenue from "../delete";
+
 const API_SPECIFIC_URL = "https://api.noroff.dev/api/v1/holidaze/venues";
 
 function GetVenueSpecific() {
@@ -52,6 +54,7 @@ function GetVenueSpecific() {
       <p>Price: {venue.price}$</p>
       <p>Rating: {venue.rating}</p>
       <p>Max Guests: {venue.maxGuests}</p>
+      <DeleteVenue id={venue.id} />
       <GetBooking venueId={venue.id} />
     </div>
   );
