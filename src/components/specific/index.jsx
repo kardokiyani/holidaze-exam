@@ -8,6 +8,8 @@ import GetBooking from "../bookings";
 
 import DeleteVenue from "../delete";
 
+import UpdateVenue from "../update";
+
 const API_SPECIFIC_URL = "https://api.noroff.dev/api/v1/holidaze/venues";
 
 function GetVenueSpecific() {
@@ -55,6 +57,7 @@ function GetVenueSpecific() {
       <p>Rating: {venue.rating}</p>
       <p>Max Guests: {venue.maxGuests}</p>
       <DeleteVenue id={venue.id} />
+      <UpdateVenue/>
       <GetBooking venueId={venue.id} />
     </div>
   );
