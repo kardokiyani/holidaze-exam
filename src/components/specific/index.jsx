@@ -37,7 +37,7 @@ function GetVenueSpecific() {
     }
 
     getData();
-  }, [id]);
+  }, [id, url]);
 
   if (isLoading) {
     return <div>Loading venue details...</div>;

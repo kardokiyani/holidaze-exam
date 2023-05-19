@@ -63,12 +63,10 @@ export function SignUp() {
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
-    const newValue = type === "checkbox" ? checked : value;
     setFormData((prevState) => ({
       ...prevState,
       [name]: type === "checkbox" ? checked : value,
-      venueManager:
-        name === "venueManager" ? checked : prevState.venueManager,
+      venueManager: name === "venueManager" ? checked : prevState.venueManager,
     }));
   };
 

@@ -36,22 +36,22 @@ export function UpcomingBookings({ customerId }) {
     <div>
       <h2>Upcoming Bookings</h2>
       <div className="venuesContainer">
-          {bookings.map((booking) => (
-            <li key={booking.id}>
-              <div className="venue">
-                <h3>{booking.venue.name} </h3>
-                <img
-                  src={booking.venue.media}
-                  alt="booking-image"
-                  className="venueImage"
-                ></img>
-                <p>{booking.venue.description} </p>
-                <p>Price: {booking.venue.price}$ </p>
-                <p>Rating: {booking.venue.rating} </p>
-                <p>Max Guests: {booking.venue.maxGuests} </p>
-              </div>
-            </li>
-          ))}
+        {bookings.map((booking) => (
+          <li key={booking.id}>
+            <div className="venue">
+              <h3>{booking.venue.name} </h3>
+              <img
+                src={booking.venue.media}
+                alt={`${booking.venue.name} image`}
+                className="venueImage"
+              />
+              <p>{booking.venue.description} </p>
+              <p>Price: {booking.venue.price}$ </p>
+              <p>Rating: {booking.venue.rating} </p>
+              <p>Max Guests: {booking.venue.maxGuests} </p>
+            </div>
+          </li>
+        ))}
       </div>
     </div>
   );
