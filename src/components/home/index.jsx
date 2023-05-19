@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 
 export const API_BASE_URL = "https://api.noroff.dev/api/v1/holidaze/venues";
@@ -12,11 +12,7 @@ function GetVenues() {
 
   const pageSize = 100;
 
-  useEffect(() => {
-    fetchVenues();
-  }, [sortField, sortOrder, currentPage, fetchVenues]);
-
-  async function fetchVenues() {
+  const fetchVenues = useCallback(async () => {
     try {
       const response = await fetch(
         `${API_BASE_URL}?sort=${sortField}&sortOrder=${sortOrder}&_page=${currentPage}&_limit=${pageSize}`
@@ -26,7 +22,11 @@ function GetVenues() {
     } catch (error) {
       console.error(error);
     }
-  }
+  }, [sortField, sortOrder, currentPage]);
+
+  useEffect(() => {
+    fetchVenues();
+  }, [fetchVenues]);
 
   const filteredVenues = venues.filter((venue) =>
     venue.name.toLowerCase().includes(searchInput.toLowerCase())
