@@ -46,7 +46,14 @@ function UpdateVenue() {
   
     fetchData();
   }, [id]);
-  
+
+  if (isLoading) {
+    return <div>Loading venue details...</div>;
+  }
+
+  if (isError) {
+    return <div>Error loading data</div>;
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();

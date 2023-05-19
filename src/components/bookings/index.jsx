@@ -69,6 +69,7 @@ export function GetBooking({ venueId }) {
   return (
     <form onSubmit={handleSubmit} style={{ maxWidth: "1200px", margin: "auto" }}>
   <div className="form-group mt-3">
+    <h2>Book now:</h2>
     <label htmlFor="dateFrom">Check In:</label>
     <input
       type="date"

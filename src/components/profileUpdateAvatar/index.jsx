@@ -4,7 +4,6 @@ import { useTokenStore } from "../profile";
 
 function UpdateAvatar({ name }) {
   const { token } = useTokenStore();
-  const [avatar, setAvatar] = useState({ url: "" });
   const [error, setError] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -13,12 +12,12 @@ function UpdateAvatar({ name }) {
 
     const form = e.target;
     const formData = new FormData(form);
-    const avatar = formData.get("avatar");
+    const avatarValue = formData.get("avatar");
 
     // Variables for request
     const Url = "https://api.noroff.dev/api/v1/holidaze/profiles";
     const endPoint = `/${name}/media`;
-    const body = { avatar: avatar };
+    const body = { avatar: avatarValue };
 
     fetch(Url + endPoint, {
       headers: {
@@ -41,6 +40,8 @@ function UpdateAvatar({ name }) {
       .catch((error) => {
         // Handle error
         console.error(error);
+        setError(error);
+        setErrorMessage("");
       });
   };
 

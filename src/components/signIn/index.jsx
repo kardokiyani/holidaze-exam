@@ -10,7 +10,6 @@ export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [token, setToken] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,16 +34,13 @@ export function SignIn() {
       }
 
       const { accessToken, name } = await response.json();
-      console.log(accessToken, name);
 
       localStorage.setItem("token", accessToken);
       localStorage.setItem("name", name);
-      setToken(accessToken);
       setEmail("");
       setPassword("");
       setError(null);
       window.location.href = "/profile";
-      console.log("Successful login!");
     } catch (error) {
       setError("An error occurred. Please try again later.");
       console.error(error);

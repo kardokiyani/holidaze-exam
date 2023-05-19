@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -17,7 +17,6 @@ function GetVenueSpecific() {
   const [venue, setVenue] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const navigate = useNavigate();
   const url = API_SPECIFIC_URL;
 
   useEffect(() => {

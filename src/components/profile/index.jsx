@@ -62,7 +62,7 @@ function Profile() {
 
       fetchUserProfile(storedToken, storedName);
     }
-  }, [setToken, setName, name]);
+  }, [setToken, setName, name, token, error]);
 
   const handleTokenChange = (newToken) => {
     setToken(newToken);
