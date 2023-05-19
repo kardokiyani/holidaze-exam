@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { Link } from "react-router-dom";
 
 export const API_BASE_URL = "https://api.noroff.dev/api/v1/holidaze/venues";
@@ -15,7 +14,7 @@ function GetVenues() {
 
   useEffect(() => {
     fetchVenues();
-  }, [sortField, sortOrder, currentPage, fetchVenues]);
+  }, [sortField, sortOrder, currentPage]);
 
   async function fetchVenues() {
     try {
@@ -38,7 +37,7 @@ function GetVenues() {
     const [field, order] = value.split("-");
     setSortField(field);
     setSortOrder(order);
-    setCurrentPage(currentPage + 1);
+    setCurrentPage(1); // Reset currentPage when changing the sort field
   };
 
   const handlePageChange = (increment) => {
