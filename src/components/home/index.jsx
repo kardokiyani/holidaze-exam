@@ -14,7 +14,7 @@ function GetVenues() {
 
   useEffect(() => {
     fetchVenues();
-  }, [sortField, sortOrder, currentPage]);
+  }, [sortField, sortOrder, currentPage, fetchVenues]);
 
   async function fetchVenues() {
     try {
