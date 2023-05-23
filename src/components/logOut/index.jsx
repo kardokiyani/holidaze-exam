@@ -3,7 +3,7 @@ import { Button, Container } from "react-bootstrap";
 export function HandleTheLogout() {
   const handleTheLogout = () => {
     localStorage.removeItem("accessToken");
-    window.location.href = "./";
+    window.location.href = "/signin";
   };
 
   return (
