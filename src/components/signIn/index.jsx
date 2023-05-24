@@ -56,7 +56,7 @@ export function SignIn() {
           <Form.Control
             className="form-control"
             type="email"
-            placeholder="Enter email"
+            placeholder="Enter email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />

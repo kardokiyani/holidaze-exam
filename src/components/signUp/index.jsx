@@ -95,7 +95,7 @@ export function SignUp() {
           <Form.Control
             className="form-control"
             type="email"
-            placeholder="Enter email"
+            placeholder="Enter email address"
             name="email"
             value={formData.email}
             onChange={handleChange}
