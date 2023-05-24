@@ -47,7 +47,7 @@ function GetVenues() {
       setCurrentPage(1);
     }
   };
-  
+
   return (
     <div>
       <div className="searchContainer">
@@ -69,10 +69,17 @@ function GetVenues() {
             <div className="venue">
               <h2>{venue.name}</h2>
               <img src={venue.media} alt={venue.name} className="venueImage" />
-              <p>{venue.description}</p>
-              <p>Price: {venue.price}$</p>
-              <p>Rating: {venue.rating}</p>
-              <p>Max Guests: {venue.maxGuests}</p>
+              <p className="venueDescription">{venue.description}</p>
+              <p className="venueInfo">
+                Price: <span className="venuePrice">{venue.price}$</span>
+              </p>
+              <p className="venueInfo">
+                Rating: <span className="venueRating">{venue.rating}</span>
+              </p>
+              <p className="venueInfo">
+                Max Guests:{" "}
+                <span className="venueMaxGuests">{venue.maxGuests}</span>
+              </p>
             </div>
           </Link>
         ))}
