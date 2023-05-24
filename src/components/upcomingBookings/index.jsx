@@ -45,10 +45,21 @@ export function UpcomingBookings({ customerId }) {
                 alt={booking.venue.name}
                 className="venueImage"
               />
-              <p>{booking.venue.description}</p>
-              <p>Price: {booking.venue.price}$</p>
-              <p>Rating: {booking.venue.rating}</p>
-              <p>Max Guests: {booking.venue.maxGuests}</p>
+              <p className="venueDescription">{booking.venue.description}</p>
+              <p className="venueInfo">
+                Price:{" "}
+                <span className="venuePrice">{booking.venue.price}$</span>
+              </p>
+              <p className="venueInfo">
+                Rating:{" "}
+                <span className="venueRating">{booking.venue.rating}</span>
+              </p>
+              <p className="venueInfo">
+                Max Guests:{" "}
+                <span className="venueMaxGuests">
+                  {booking.venue.maxGuests}
+                </span>
+              </p>
             </div>
           </li>
         ))}

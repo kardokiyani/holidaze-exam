@@ -52,14 +52,20 @@ function GetVenueSpecific() {
       <h2>{venue.name}</h2>
       <img src={venue.media} alt={venue.name} className="specificVenueImage" />
       <p className="venueDescription">{venue.description}</p>
-      <p className="venueInfo">Price: <span className="venuePrice">{venue.price}$</span></p>
-      <p className="venueInfo">Rating: <span className="venueRating">{venue.rating}</span></p>
-      <p className="venueInfo">Max Guests: <span className="venueMaxGuests">{venue.maxGuests}</span></p>
+      <p className="venueInfo">
+        Price: <span className="venuePrice">{venue.price}$</span>
+      </p>
+      <p className="venueInfo">
+        Rating: <span className="venueRating">{venue.rating}</span>
+      </p>
+      <p className="venueInfo">
+        Max Guests: <span className="venueMaxGuests">{venue.maxGuests}</span>
+      </p>
       <DeleteVenue id={venue.id} />
-      <UpdateVenue/>
+      <UpdateVenue />
       <GetBooking venueId={venue.id} />
     </div>
-  );  
+  );
 }
 
 export default GetVenueSpecific;
