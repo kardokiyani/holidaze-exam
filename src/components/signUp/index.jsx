@@ -135,7 +135,13 @@ export function SignUp() {
             name="avatar"
             value={formData.avatar}
             onChange={handleChange}
+            isInvalid={!!isError && formData.avatar.trim() === ""}
           />
+          {isError && formData.avatar.trim() === "" && (
+            <Form.Control.Feedback type="invalid" className="errorStyle">
+              Please enter your avatar URL
+            </Form.Control.Feedback>
+          )}
         </Form.Group>
 
         <Form.Group controlId="formBasicVenueManager">
