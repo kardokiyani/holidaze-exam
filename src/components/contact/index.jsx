@@ -52,22 +52,38 @@ export function Contact() {
         <label className="labelStyle" htmlFor="full-name">
           Full Name
         </label>
-        <input className="form-control" {...register("fullName")} />
+        <input
+          className="form-control"
+          {...register("fullName")}
+          placeholder="Enter full name"
+        />
         <p className="errorStyle">{errors.fullName?.message}</p>
         <label className="labelStyle" htmlFor="email">
           Email
         </label>
-        <input className="form-control" {...register("email")} />
+        <input
+          className="form-control"
+          {...register("email")}
+          placeholder="Enter email address"
+        />
         <p className="errorStyle">{errors.email?.message}</p>
         <label className="labelStyle" htmlFor="subject">
           Subject
         </label>
-        <input className="form-control" {...register("subject")} />
+        <input
+          className="form-control"
+          {...register("subject")}
+          placeholder="Enter subject"
+        />
         <p className="errorStyle">{errors.subject?.message}</p>
         <label className="labelStyle" htmlFor="body">
           Body
         </label>
-        <input className="form-control" {...register("body")} />
+        <input
+          className="form-control"
+          {...register("body")}
+          placeholder="Enter body"
+        />
         <p className="errorStyle">{errors.body?.message}</p>
         <Button className="submit-btn" variant="primary" type="submit">
           Send
@@ -75,6 +91,7 @@ export function Contact() {
       </form>
     </Container>
   );
+  
 }
 
 export default Contact;

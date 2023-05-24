@@ -67,7 +67,7 @@ export function SignIn() {
           <Form.Control
             className="form-control"
             type="password"
-            placeholder="Password"
+            placeholder="Enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

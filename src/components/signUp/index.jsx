@@ -113,7 +113,7 @@ export function SignUp() {
           <Form.Control
             className="form-control"
             type="password"
-            placeholder="Password"
+            placeholder="Enter password"
             name="password"
             value={formData.password}
             onChange={handleChange}

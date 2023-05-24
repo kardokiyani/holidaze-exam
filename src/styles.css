@@ -41,6 +41,11 @@ footer {
   padding: 20px;
 }
 
+.labelStyle {
+  font-weight: bold;
+  color: black;
+}
+
 .credit {
   margin-top: 10px;
   text-align: center;
