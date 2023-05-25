@@ -47,15 +47,15 @@ function UpdateAvatar({ name }) {
 
   return (
     <div>
-      <h2>Update Avatar</h2>
+      <h2>Update Avatar:</h2>
       {errorMessage && <div>{errorMessage}</div>}
       {error instanceof Error && <div>{error.toString()}</div>}
       <form onSubmit={handleSubmit}>
-        <label>
+        <label className="avatarUrlStyle">
           Avatar URL:
-          <input name="avatar" type="url" />
+          <input name="avatar" type="url" className="avatar-input" />
         </label>
-        <button type="submit">Update</button>
+        <button type="submit" className="update-button">UPDATE</button>
       </form>
     </div>
   );

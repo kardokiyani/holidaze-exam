@@ -409,6 +409,33 @@ p {
   margin-bottom: 20px;
 }
 
+.avatarUrlStyle {
+  font-weight: bold;
+}
+
+
+.avatar-input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 3px;
+}
+
+.update-button {
+  background-color: #6d9be0;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.update-button:hover {
+  background-color: #5687c7;
+}
+
 @media screen and (max-width: 820px) {
   .ulStyle {
     display: none;
