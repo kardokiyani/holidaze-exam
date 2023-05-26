@@ -437,6 +437,13 @@ p {
 }
 
 @media screen and (max-width: 820px) {
+  .venuesContainer {
+    display: block;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 820px) {
   .ulStyle {
     display: none;
     position: absolute;
