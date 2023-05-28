@@ -4,11 +4,11 @@ import { useParams } from "react-router-dom";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import GetBooking from "../bookings";
-
 import DeleteVenue from "../delete";
 
 import UpdateVenue from "../update";
+
+import CalenderBooking from "../calenderBooking";
 
 const API_SPECIFIC_URL = "https://api.noroff.dev/api/v1/holidaze/venues";
 
@@ -63,7 +63,7 @@ function GetVenueSpecific() {
       </p>
       <DeleteVenue id={venue.id} />
       <UpdateVenue />
-      <GetBooking venueId={venue.id} />
+      <CalenderBooking venueId={venue.id} />
     </div>
   );
 }
