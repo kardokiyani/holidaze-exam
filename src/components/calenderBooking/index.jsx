@@ -123,6 +123,7 @@ function CalenderBooking({ venueId }) {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h2>Book now:</h2>
       <div className="form-group mt-3">
         <label htmlFor="dateFrom">Check In:</label>
         <DatePicker
