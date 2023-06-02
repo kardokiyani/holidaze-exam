@@ -1,6 +1,6 @@
 # Holidaze
 
-![image](https://user-images.githubusercontent.com/52622303/164316813-4b12d99f-aeb7-4069-85cf-e72b3a50ac99.png)
+![portfolio-holidaze-image](https://github.com/kardokiyani/holidaze-exam/assets/91535515/36320b2e-dc06-4232-9e08-0488662a90e2)
 
 This is a site where a user can find many different venues which you can book as a user. Or you can log in as a venue manager where you can create your own venue, delete it or edit it as you want.
 
