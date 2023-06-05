@@ -23,6 +23,16 @@ This is the tech stack that I have used to make this site:
 
 - [Adobe XD](https://www.adobe.com)
 
+## Running
+
+Info on how to run the app:
+
+To run the app, run the following commands:
+
+```bash
+npm run start
+```
+
 ## Contact
 
 This is where you can find me and contact me:
