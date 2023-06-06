@@ -23,7 +23,25 @@ This is the tech stack that I have used to make this site:
 
 - [Adobe XD](https://www.adobe.com)
 
-## Running
+## Getting Started
+
+### Installing
+
+Here you can get info on how to start the project, basically how to clone the repo and install the dependencies:
+
+1. Clone the repo:
+
+```bash
+git clone git@github.com/kardokiyani/holidaze-exam.git
+```
+
+2. Install the dependencies:
+
+```
+npm install
+```
+
+### Running
 
 Info on how to run the app:
 
